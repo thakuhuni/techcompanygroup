@@ -12,6 +12,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
 
 export interface Props {
   /**
@@ -23,6 +24,20 @@ export interface Props {
 
 const drawerWidth = 240;
 const navItems = ['Pricing', 'Features', 'Login'];
+const navLinkItems = [
+  {
+    item: 'Pricing',
+    link: './Pricing'
+  },
+  {
+    item: 'Features',
+    link: './Features'
+  },
+  {
+    item: 'Login',
+    link: './Login'
+  }
+]
 
 export function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -73,11 +88,12 @@ export function DrawerAppBar(props: Props) {
             Tech Company Group
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+            {navLinkItems.map((linkitem) => (
+              <Button key={linkitem.item} component={Link} to={linkitem.link} sx={{ color: '#fff' }}>
+                {linkitem.item}
               </Button>
             ))}
+              
           </Box>
         </Toolbar>
       </AppBar>
